@@ -12,27 +12,32 @@ const options = {
   },
 };
 
+const script = `tell application "${process.env.MUSIC_PROVIDER}" to get player state & (get {name, artist} of current track)`
+
 const updateStatus = () => {
     applescript.execString(
-        `tell app "${process.env.MUSIC_PROVIDER}" to get {name, artist} of current track`,
+        script,
         async (err, result) => {
             if (err) {
-                console.error(err);
+                return
             }
 
-            const [song, artist] = await result;
-            const status_emoji = '🎶';
-            const status_text = `${song} by ${artist}`;
-            const data = { profile: { status_emoji, status_text } };
+            const [state, song, artist] = await result;
+            
+            if (state !== "paused") {
+                const status_emoji = '🎶';
+                const status_text = `${song} by ${artist}`;
+                const data = { profile: { status_emoji, status_text } };
 
-            await axios
-                .request({ ...options, data })
-                .then(function () {
-                    console.log(`Successfully updated status with: ${status_emoji} ${status_text}`);
-                })
-                .catch(function (error) {
-                    console.error(error);
-                });
+                await axios
+                    .request({ ...options, data })
+                    .then(function () {
+                        console.log(`Successfully updated status with: ${status_emoji} ${status_text}`);
+                    })
+                    .catch(function (error) {
+                        console.error(error);
+                    });
+            }
         }
     );
 }

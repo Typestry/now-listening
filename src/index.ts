@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { startStatusTask } from "./startStatusTask.js";
+import { startStatusTask } from "./utils/startStatusTask";
 import { readFileSync, writeFile } from "fs";
 
 (async () => {
@@ -30,7 +30,7 @@ function getAnswers() {
       name: "token",
       message: "What is your slack app token?",
       type: "input",
-      validate: (token) => {
+      validate: (token: string) => {
         if (!token.length) {
           return "Please provide a token";
         }
@@ -42,7 +42,7 @@ function getAnswers() {
       message: "Who is your music provider?",
       type: "checkbox",
       choices: ["Music", "Spotify"],
-      validate: (options) => {
+      validate: (options: Array<string>) => {
         if (!options.length) {
           return "Choose at least one of the above, use space to choose the option";
         }

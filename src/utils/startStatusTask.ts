@@ -1,27 +1,28 @@
-import applescript from "applescript"
-import axios from "axios"
-import nodeCron from "node-cron"
-import { config } from "dotenv"
+import applescript from "applescript";
+import axios from "axios";
+import nodeCron from "node-cron";
+import { config } from "dotenv";
+import { UserRoutes } from "../constants/api";
+import { MusicProvider } from "../types/MusicProvider";
 
-config()
+config();
 
-export const startStatusTask = (provider, token) => {
+export const startStatusTask = (provider: MusicProvider, token: string) => {
   const options = {
     method: "POST",
-    url: "https://slack.com/api/users.profile.set",
+    url: UserRoutes.writeProfile(),
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   };
   const script = `tell application "${provider}" to get player state & (get {name, artist} of current track)`;
   const task = () => {
     applescript.execString(script, async (err, result) => {
-      if (err) {
+      if (err || !Array.isArray(result)) {
         return;
       }
 
-      const [state, song, artist] = await result;
+      const [state, song, artist] = result;
 
       if (state !== "paused") {
         const status_emoji = "🎶";

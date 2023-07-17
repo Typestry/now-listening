@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { startStatusTask } from "./utils/startStatusTask";
+import { statusTask } from "./utils/statusTask";
 import { readFileSync, writeFile } from "fs";
 import { verifyAuth } from "./utils/verifyAuth";
 
@@ -8,7 +8,7 @@ import { verifyAuth } from "./utils/verifyAuth";
     const response = readFileSync("config.txt", "utf8");
     const { token, provider } = JSON.parse(response);
     console.log("Successfully read config file! Starting task! 🎉");
-    startStatusTask(provider, token);
+    statusTask(provider, token);
   } catch (err) {
     const {
       token,
@@ -21,7 +21,7 @@ import { verifyAuth } from "./utils/verifyAuth";
       }
       console.log("Successfully wrote config file! 🎉");
     });
-    startStatusTask(provider, token);
+    statusTask(provider, token);
   }
 })();
 

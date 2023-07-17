@@ -7,7 +7,7 @@ import { MusicProvider } from "../types/MusicProvider";
 
 config();
 
-export const startStatusTask = (provider: MusicProvider, token: string) => {
+export const statusTask = (provider: MusicProvider, token: string) => {
   const options = {
     method: "POST",
     url: UserRoutes.writeProfile(),

@@ -1,1 +1,1 @@
-export type MusicProvider = "Music" | "Spotify";
+export type MusicProvider = "Music" | "Spotify"

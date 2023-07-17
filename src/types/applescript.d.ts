@@ -4,7 +4,7 @@ declare module "applescript" {
     script: string,
     args: (
       err: unknown,
-      result: string | Array<string> | number
-    ) => Promise<void>
-  ) => void 0;
+      result: string | Array<string> | number,
+    ) => Promise<void>,
+  ) => void 0
 }

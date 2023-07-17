@@ -1,29 +1,28 @@
-import inquirer from "inquirer";
-import { statusTask } from "./utils/statusTask";
-import { readFileSync, writeFile } from "fs";
-import { verifyAuth } from "./utils/verifyAuth";
-
-(async () => {
+import inquirer from "inquirer"
+import { statusTask } from "./utils/statusTask"
+import { readFileSync, writeFile } from "fs"
+import { verifyAuth } from "./utils/verifyAuth"
+;(async () => {
   try {
-    const response = readFileSync("config.txt", "utf8");
-    const { token, provider } = JSON.parse(response);
-    console.log("Successfully read config file! Starting task! 🎉");
-    statusTask(provider, token);
+    const response = readFileSync("config.txt", "utf8")
+    const { token, provider } = JSON.parse(response)
+    console.log("Successfully read config file! Starting task! 🎉")
+    statusTask(provider, token)
   } catch (err) {
     const {
       token,
       options: [provider],
-    } = await getAnswers();
-    const content = JSON.stringify({ token, provider });
+    } = await getAnswers()
+    const content = JSON.stringify({ token, provider })
     writeFile("config.txt", content, (err) => {
       if (err) {
-        console.error(err);
+        console.error(err)
       }
-      console.log("Successfully wrote config file! 🎉");
-    });
-    statusTask(provider, token);
+      console.log("Successfully wrote config file! 🎉")
+    })
+    statusTask(provider, token)
   }
-})();
+})()
 
 function getAnswers() {
   return inquirer.prompt([
@@ -32,17 +31,17 @@ function getAnswers() {
       message: "What is your slack app token?",
       type: "input",
       validate: async (token: string) => {
-        const isValid = await verifyAuth(token);
+        const isValid = await verifyAuth(token)
 
         if (!isValid) {
-          return "Please provide a valid slack token";
+          return "Please provide a valid slack token"
         }
 
         if (!token.length) {
-          return "Please provide a token";
+          return "Please provide a token"
         }
 
-        return true;
+        return true
       },
     },
     {
@@ -52,15 +51,15 @@ function getAnswers() {
       choices: ["Music", "Spotify"],
       validate: (options: Array<string>) => {
         if (!options.length) {
-          return "Choose at least one of the above, use space to choose the option";
+          return "Choose at least one of the above, use space to choose the option"
         }
 
         if (options.length > 1) {
-          return "Please select only one option";
+          return "Please select only one option"
         }
 
-        return true;
+        return true
       },
     },
-  ]);
+  ])
 }

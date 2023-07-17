@@ -2,26 +2,44 @@ import inquirer from "inquirer"
 import { statusTask } from "./utils/statusTask"
 import { readFileSync, writeFile } from "fs"
 import { verifyAuth } from "./utils/verifyAuth"
+import { MusicProvider } from "./types/MusicProvider"
+import { Messages } from "./constants/messages"
+
+const FILENAME = "config.txt"
+const ENCODING = "utf8"
+
 ;(async () => {
+  let token = ""
+  let provider: MusicProvider = "Music"
+
   try {
-    const response = readFileSync("config.txt", "utf8")
-    const { token, provider } = JSON.parse(response)
-    console.log("Successfully read config file! Starting task! 🎉")
-    statusTask(provider, token)
+    const response = readFileSync(FILENAME, ENCODING)
+    const config = JSON.parse(response)
+
+    token = config.token
+    provider = config.provider
+
+    console.log(Messages.read_success)
   } catch (err) {
-    const {
+    const answers = await getAnswers()
+
+    token = answers.token
+    provider = answers.options[0]
+
+    const content = JSON.stringify({
       token,
-      options: [provider],
-    } = await getAnswers()
-    const content = JSON.stringify({ token, provider })
-    writeFile("config.txt", content, (err) => {
+      provider,
+    })
+
+    writeFile(FILENAME, content, (err) => {
       if (err) {
         console.error(err)
       }
-      console.log("Successfully wrote config file! 🎉")
+      console.log(Messages.write_success)
     })
-    statusTask(provider, token)
   }
+
+  statusTask({ token, provider })
 })()
 
 function getAnswers() {

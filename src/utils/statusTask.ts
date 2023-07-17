@@ -1,13 +1,14 @@
 import applescript from "applescript"
+
 import axios from "axios"
 import nodeCron from "node-cron"
 import { config } from "dotenv"
 import { UserRoutes } from "../constants/api"
-import { MusicProvider } from "../types/MusicProvider"
+import { Payload } from "../types/Payload"
 
 config()
 
-export const statusTask = (provider: MusicProvider, token: string) => {
+export const statusTask = ({ token, provider }: Payload) => {
   const options = {
     method: "POST",
     url: UserRoutes.writeProfile(),

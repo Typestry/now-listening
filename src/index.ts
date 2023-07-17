@@ -1,6 +1,7 @@
 import inquirer from "inquirer";
 import { startStatusTask } from "./utils/startStatusTask";
 import { readFileSync, writeFile } from "fs";
+import { verifyAuth } from "./utils/verifyAuth";
 
 (async () => {
   try {
@@ -30,10 +31,17 @@ function getAnswers() {
       name: "token",
       message: "What is your slack app token?",
       type: "input",
-      validate: (token: string) => {
+      validate: async (token: string) => {
+        const isValid = await verifyAuth(token);
+
+        if (!isValid) {
+          return "Please provide a valid slack token";
+        }
+
         if (!token.length) {
           return "Please provide a token";
         }
+
         return true;
       },
     },

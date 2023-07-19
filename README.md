@@ -33,9 +33,9 @@ To start the application, run the following command in your terminal:
 now-listening
 ```
 
-Upon running the app for the first time, you'll be prompted to provide your user token and preferred music provider. These credentials will be written to a file called config.txt in the dist directory. Subsequent runs will read those credentials from config.txt.
+Upon running the app for the first time, you'll be prompted to provide your user token and preferred music provider. These credentials will be written to a file called `config.txt` in the dist directory. Subsequent runs will read those credentials from `config.txt`.
 
-To find your user token go to https://slack.com/apps/. Select your app from the list. Then click `Add features and functionality`, followed by `Permissions` and copy the token in the box below `User OAuth Token` it will start with `xoxp-`. See more about user tokens [here](https://api.slack.com/authentication/token-types#user). 
+To find your user token go to https://api.slack.com/apps/. Select your app from the list. Then click `Add features and functionality`, followed by `Permissions` and copy the token in the box below `User OAuth Token` it will start with `xoxp-`. See more about user tokens [here](https://api.slack.com/authentication/token-types#user). 
 
 Currently ***Now Listening*** supports `Apple Music` and `Spotify` with plans to support other services in the near future.  
 

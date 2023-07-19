@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "description": "",
   "type": "module",
+  "homepage": "https://github.com/thispastwinter/now-listening",
   "scripts": {
     "start": "ts-node-esm ./src/index.ts",
     "build": "npx tsc",

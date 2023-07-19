@@ -5,8 +5,13 @@
   "type": "module",
   "scripts": {
     "start": "ts-node-esm ./src/index.ts",
+    "build": "npx tsc",
     "prettier": "npx prettier . --write",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "dist/index.js",
+  "bin": {
+    "now-listening": "./dist/index.js"
   },
   "author": "Justin Klaas",
   "license": "ISC",
@@ -15,6 +20,7 @@
     "axios": "^1.4.0",
     "dotenv": "^16.3.1",
     "inquirer": "^9.2.8",
+    "node-cache": "^5.1.2",
     "node-cron": "^3.0.2",
     "ts-node": "^10.9.1"
   },

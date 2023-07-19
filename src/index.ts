@@ -1,11 +1,19 @@
+#!/usr/bin/env node --experimental-specifier-resolution=node
 import inquirer from "inquirer"
-import { statusTask } from "./utils/statusTask"
+import { statusTask } from "./utils/statusTask.js"
 import { readFileSync, writeFile } from "fs"
-import { verifyAuth } from "./utils/verifyAuth"
-import { MusicProvider } from "./types/MusicProvider"
-import { Messages } from "./constants/messages"
+import { verifyAuth } from "./utils/verifyAuth.js"
+import { MusicProvider } from "./types/MusicProvider.js"
+import { Messages } from "./constants/messages.js"
+import path from "path"
+import { fileURLToPath } from "url"
+import { Payload } from "./types/Payload.js"
 
-const FILENAME = "config.txt"
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+const FILE_NAME = "config.txt"
+const FILE_PATH = `${__dirname}/${FILE_NAME}`
 const ENCODING = "utf8"
 
 ;(async () => {
@@ -13,8 +21,8 @@ const ENCODING = "utf8"
   let provider: MusicProvider = "Music"
 
   try {
-    const response = readFileSync(FILENAME, ENCODING)
-    const config = JSON.parse(response)
+    const response = readFileSync(FILE_PATH, ENCODING)
+    const config = JSON.parse(response) as Payload
 
     token = config.token
     provider = config.provider
@@ -31,7 +39,7 @@ const ENCODING = "utf8"
       provider,
     })
 
-    writeFile(FILENAME, content, (err) => {
+    writeFile(FILE_PATH, content, (err) => {
       if (err) {
         console.error(err)
       }

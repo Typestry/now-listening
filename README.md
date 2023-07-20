@@ -1,5 +1,5 @@
 &nbsp;&nbsp;
-<img src="./images/banner.png" />
+<img src="https://github.com/thispastwinter/now-listening/blob/main/images/banner.png?raw=true" />
 &nbsp;&nbsp;
                                                                                                                                                                                                       
 ## Please Note

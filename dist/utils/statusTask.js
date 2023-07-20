@@ -10,9 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import applescript from "applescript";
 import axios from "axios";
 import nodeCron from "node-cron";
-import { config } from "dotenv";
 import { UserRoutes } from "../constants/api.js";
-config();
 export const statusTask = ({ token, provider }) => {
     const options = {
         method: "POST",

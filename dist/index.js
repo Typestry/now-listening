@@ -25,7 +25,6 @@ const ENCODING = "utf8";
     let provider = "Music";
     try {
         const response = readFileSync(FILE_PATH, ENCODING);
-        console.log(FILE_PATH);
         const config = JSON.parse(response);
         token = config.token;
         provider = config.provider;

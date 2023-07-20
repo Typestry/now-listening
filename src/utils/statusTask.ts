@@ -1,11 +1,8 @@
 import applescript from "applescript"
 import axios from "axios"
 import nodeCron from "node-cron"
-import { config } from "dotenv"
 import { UserRoutes } from "../constants/api.js"
 import { Payload } from "../types/Payload.js"
-
-config()
 
 export const statusTask = ({ token, provider }: Payload) => {
   const options = {

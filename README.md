@@ -16,6 +16,8 @@
 
 This assumes you have already created a slack app in your current workspace and added the appropriate permissions. For this app to work, you'll want to include the following scope(s): `users.profile:write`. If you don't know where to start, read the slack app documentation [here](https://api.slack.com/start/apps)!
 
+**This app is currently only supported on macos as it uses applescript internally to get current track information**
+
 ## Installation
 
 This application is intended to be ran globally. If you have forked this repository and wish to contribute see [Local Development](#local-development) for instructions on how to run things locally.

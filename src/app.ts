@@ -1,3 +1,4 @@
+import { Messages } from "./constants/messages.js"
 import { MusicProvider } from "./types/MusicProvider.js"
 import { getAnswers } from "./utils/getAnswers.js"
 import { getCredentials } from "./utils/getCredentials.js"
@@ -10,6 +11,7 @@ export const app = async () => {
 
   try {
     const credentials = getCredentials()
+    console.log(Messages.read_success)
     token = credentials.token
     provider = credentials.provider
   } catch (err) {

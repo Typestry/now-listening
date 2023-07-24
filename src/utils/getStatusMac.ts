@@ -6,9 +6,7 @@ export const getStatusMac: StatusGetter = (provider) => {
 
   return new Promise((resolve) => {
     applescript.execString(script, async (err, result) => {
-      if (err instanceof TypeError && err.message === "result not iterable") {
-        return
-      } else {
+      if (err! instanceof TypeError && err.message !== "result not iterable") {
         console.error(err)
       }
 

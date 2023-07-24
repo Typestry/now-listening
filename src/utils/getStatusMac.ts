@@ -1,11 +1,10 @@
 import applescript from "applescript"
-import { MusicProvider } from "../types/MusicProvider.js"
-import { ProfilePartial } from "../types/ProfilePartial.js"
+import { StatusGetter } from "../types/StatusGetter.js"
 
-export const getStatusMac = (provider: MusicProvider) => {
+export const getStatusMac: StatusGetter = (provider) => {
   const script = `tell application "${provider}" to get player state & (get {name, artist} of current track)`
 
-  return new Promise<ProfilePartial>((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     applescript.execString(script, async (err, result) => {
       if (err) {
         reject(err)

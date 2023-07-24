@@ -1,7 +1,6 @@
 import inquirer from "inquirer"
 import { verifyAuth } from "../api/auth/verifyAuth.js"
 import { Messages } from "../constants/messages.js"
-import { MusicProvider } from "../types/MusicProvider.js"
 import { MusicProviders } from "../constants/musicProviders.js"
 
 export const getAnswers = () => {

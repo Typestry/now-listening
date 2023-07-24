@@ -1,6 +1,6 @@
 import { MusicProvider } from "./MusicProvider.js"
 
-export type Payload = {
+export type Credentials = {
   provider: MusicProvider
   token: string
 }

@@ -7,40 +7,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import applescript from "applescript";
-import axios from "axios";
 import nodeCron from "node-cron";
-import { UserRoutes } from "../constants/api.js";
-export const statusTask = ({ token, provider }) => {
-    const options = {
-        method: "POST",
-        url: UserRoutes.writeProfile(),
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    };
-    const script = `tell application "${provider}" to get player state & (get {name, artist} of current track)`;
-    const task = () => {
-        applescript.execString(script, (err, result) => __awaiter(void 0, void 0, void 0, function* () {
-            if (err || !Array.isArray(result)) {
-                return;
-            }
-            const [state, song, artist] = result;
-            if (state !== "paused") {
-                const status_emoji = "🎶";
-                const status_text = `${song} by ${artist}`;
-                const data = { profile: { status_emoji, status_text } };
-                yield axios
-                    .request(Object.assign(Object.assign({}, options), { data }))
-                    .then(function () {
-                    console.log(`Successfully updated status with: ${status_emoji} ${status_text}`);
-                })
-                    .catch(function (error) {
-                    console.error(error);
-                });
-            }
-        }));
-    };
+import { getStatusMac } from "./getStatusMac.js";
+import { updateStatus } from "../api/status/updateStatus.js";
+export const statusTask = (provider) => {
+    const task = () => __awaiter(void 0, void 0, void 0, function* () {
+        switch (process.platform) {
+            case "darwin":
+                yield getStatusMac(provider).then(updateStatus);
+            case "linux":
+                throw Error("Linux is not currently supported.");
+            case "win32":
+                console.error("Windows is not currently supported.");
+            default:
+                throw Error(`Operating system is not supported.`);
+        }
+    });
     nodeCron.schedule("* * * * *", task);
 };
 //# sourceMappingURL=statusTask.js.map

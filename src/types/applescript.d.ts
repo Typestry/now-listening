@@ -4,7 +4,8 @@ declare module "applescript" {
     script: string,
     args: (
       err: unknown,
-      result: string | Array<string> | number,
+      // In our case we expect a string so there is no need to enforce other possible types
+      result: Array<string>,
     ) => Promise<void>,
   ) => void 0
 }

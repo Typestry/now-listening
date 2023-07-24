@@ -2,7 +2,6 @@ import nodeCron from "node-cron"
 import { getStatusMac } from "./getStatusMac.js"
 import { updateStatus } from "../api/status/updateStatus.js"
 import { MusicProvider } from "../types/MusicProvider.js"
-import { getStatusWindows } from "./getStatusWindows.js"
 
 export const statusTask = (provider: MusicProvider) => {
   const task = async () => {
@@ -12,7 +11,7 @@ export const statusTask = (provider: MusicProvider) => {
       case "linux":
         throw Error("Linux is not currently supported.")
       case "win32":
-        await getStatusWindows(provider).then(updateStatus)
+        console.error("Windows is not currently supported.")
       default:
         throw Error(`Operating system is not supported.`)
     }

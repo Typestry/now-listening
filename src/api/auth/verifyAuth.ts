@@ -1,5 +1,5 @@
 import axios from "axios"
-import { TestRoutes } from "../constants/api.js"
+import { TestRoutes } from "../../constants/api.js"
 
 export const verifyAuth = async (token: string) => {
   const options = {

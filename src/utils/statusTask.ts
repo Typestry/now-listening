@@ -1,43 +1,22 @@
-import applescript from "applescript"
-import axios from "axios"
 import nodeCron from "node-cron"
-import { UserRoutes } from "../constants/api.js"
-import { Payload } from "../types/Payload.js"
+import { getStatusMac } from "./getStatusMac.js"
+import { getCurrentOS } from "./getCurrentOS.js"
+import { updateStatus } from "../api/status/updateStatus.js"
+import { MusicProvider } from "../types/MusicProvider.js"
+import { getStatusWindows } from "./getStatusWindows.js"
 
-export const statusTask = ({ token, provider }: Payload) => {
-  const options = {
-    method: "POST",
-    url: UserRoutes.writeProfile(),
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-  const script = `tell application "${provider}" to get player state & (get {name, artist} of current track)`
-  const task = () => {
-    applescript.execString(script, async (err, result) => {
-      if (err || !Array.isArray(result)) {
+export const statusTask = (provider: MusicProvider) => {
+  const currentOS = getCurrentOS()
+
+  const task = async () => {
+    switch (currentOS) {
+      case "mac_os":
+        await getStatusMac(provider).then(updateStatus)
+      case "linux":
         return
-      }
-
-      const [state, song, artist] = result
-
-      if (state !== "paused") {
-        const status_emoji = "🎶"
-        const status_text = `${song} by ${artist}`
-        const data = { profile: { status_emoji, status_text } }
-
-        await axios
-          .request({ ...options, data })
-          .then(function () {
-            console.log(
-              `Successfully updated status with: ${status_emoji} ${status_text}`,
-            )
-          })
-          .catch(function (error) {
-            console.error(error)
-          })
-      }
-    })
+      case "windows":
+        await getStatusWindows(provider).then(updateStatus)
+    }
   }
   nodeCron.schedule("* * * * *", task)
 }

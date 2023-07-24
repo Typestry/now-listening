@@ -1,21 +1,24 @@
 import inquirer from "inquirer"
 import { verifyAuth } from "../api/auth/verifyAuth.js"
+import { Messages } from "../constants/messages.js"
+import { MusicProvider } from "../types/MusicProvider.js"
+import { MusicProviders } from "../constants/musicProviders.js"
 
 export const getAnswers = () => {
   return inquirer.prompt([
     {
       name: "token",
-      message: "What is your slack app token?",
+      message: Messages.token_question,
       type: "input",
       validate: async (token: string) => {
         const isValid = await verifyAuth(token)
 
         if (!isValid) {
-          return "Please provide a valid slack token"
+          return Messages.invalid_token
         }
 
         if (!token.length) {
-          return "Please provide a token"
+          return Messages.missing_token
         }
 
         return true
@@ -23,16 +26,16 @@ export const getAnswers = () => {
     },
     {
       name: "options",
-      message: "Who is your music provider?",
+      message: Messages.provider_question,
       type: "checkbox",
-      choices: ["Music", "Spotify"],
+      choices: Object.values(MusicProviders),
       validate: (options: Array<string>) => {
         if (!options.length) {
-          return "Choose at least one of the above, use space to choose the option"
+          return Messages.no_option_selected
         }
 
         if (options.length > 1) {
-          return "Please select only one option"
+          return Messages.too_many_options
         }
 
         return true

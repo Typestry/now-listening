@@ -14,7 +14,7 @@ export const getStatusMac: StatusGetter = (provider) => {
       const [state, song, artist] = result as Array<string>
 
       if (state === "paused") {
-        reject(Messages.no_track_result(provider))
+        return
       }
 
       const status_emoji = "🎶"

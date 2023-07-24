@@ -13,9 +13,11 @@ export const statusTask = (provider: MusicProvider) => {
       case "mac_os":
         await getStatusMac(provider).then(updateStatus)
       case "linux":
-        return
+        throw Error("Linux is not currently supported.")
       case "windows":
         await getStatusWindows(provider).then(updateStatus)
+      default:
+        throw Error(`Operating system is not supported.`)
     }
   }
   nodeCron.schedule("* * * * *", task)

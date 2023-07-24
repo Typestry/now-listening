@@ -6,11 +6,13 @@ export const getStatusMac: StatusGetter = (provider) => {
 
   return new Promise((resolve) => {
     applescript.execString(script, async (err, result) => {
-      if (err! instanceof TypeError && err.message !== "result not iterable") {
+      // In some cases a TypeError is thrown most often when the player isn't playing music
+      // Thus we are currently ignoring TyperErrors
+      if (err! instanceof TypeError) {
         console.error(err)
       }
 
-      const [state, song, artist] = result as Array<string>
+      const [state, song, artist] = result
 
       if (state === "paused") {
         return

@@ -16,13 +16,6 @@ jobs:
         with:
           repo_token: "${{ secrets.PUBLISH_TOKEN }}"
           prerelease: false
-
-name: Publish Package to npmjs
-on:
-  push:
-    branches:
-      - release
-jobs:
   build:
     runs-on: ubuntu-latest
     steps:

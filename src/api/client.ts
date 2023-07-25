@@ -1,5 +1,5 @@
 import axios from "axios"
-import { getCredentials } from "../utils/getCredentials.js"
+import { getCredentials } from "../utils/getCredentials"
 
 export const client = axios.create({})
 

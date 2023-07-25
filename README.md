@@ -49,4 +49,3 @@ npm run build
 ```
 
 This will build the app with [rollup](https://rollupjs.org/) and overwrite the existing `dist` directory with your changes.
-

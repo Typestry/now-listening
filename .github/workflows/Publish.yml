@@ -9,7 +9,7 @@ jobs:
   get-version:
     id: package-version
     uses: martinbeentjes/npm-get-version-action@v1.3.1
-    
+
   build:
     runs-on: ubuntu-latest
     steps:

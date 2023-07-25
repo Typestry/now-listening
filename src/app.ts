@@ -4,6 +4,7 @@ import { getAnswers } from "./utils/getAnswers"
 import { getCredentials } from "./utils/getCredentials"
 import { statusTask } from "./utils/statusTask"
 import { writeCredentials } from "./utils/writeCredentials"
+import nodeCron from "node-cron"
 
 export const app = async () => {
   let token = ""
@@ -25,5 +26,5 @@ export const app = async () => {
     writeCredentials(content)
   }
 
-  statusTask(provider)
+  nodeCron.schedule("* * * * *", async () => await statusTask(provider))
 }

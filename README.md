@@ -35,7 +35,7 @@ Currently **_Now Listening_** supports `Apple Music` and `Spotify` with plans to
 ## Local Development
 
 - Be sure to run `npm install` first and foremost.
-- Run the app with `npm run start`.
+- Debug the app with `npm run dev` which will start [rollup](https://rollupjs.org/) in watch mode.
 
 🔨 **Building the App:**
 
@@ -45,4 +45,4 @@ To build the app, run the following script:
 npm run build
 ```
 
-This will overwrite the existing `dist` directory with your changes.
+This will build the app with [rollup](https://rollupjs.org/) and overwrite the existing `dist` directory with your changes.

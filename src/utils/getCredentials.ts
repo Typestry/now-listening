@@ -1,5 +1,5 @@
-import { ENCODING, FILE_PATH } from "../constants/filesystem.js"
-import { Credentials } from "../types/Credentials.js"
+import { ENCODING, FILE_PATH } from "../constants/filesystem"
+import { Credentials } from "../types/Credentials"
 import { readFileSync } from "fs"
 
 export const getCredentials = () => {

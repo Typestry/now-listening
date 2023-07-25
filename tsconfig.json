@@ -1,23 +1,10 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "dist",
-    "target": "es6",
-    "allowJs": true,
-    "skipLibCheck": true,
+    "target": "esnext",
+    "module": "esnext",
     "strict": true,
-    "sourceMap": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": false,
     "esModuleInterop": true,
-    "module": "ESNext",
-    "moduleResolution": "NodeNext",
-    "resolveJsonModule": true,
-    "isolatedModules": true
-  },
-  "ts-node": {
-    "esm": true,
-    "experimentalSpecifierResolution": "node",
-    "transpileOnly": true
+    "skipLibCheck": true,
+    "moduleResolution": "node"
   }
 }

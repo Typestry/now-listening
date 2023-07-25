@@ -1,7 +1,7 @@
 import nodeCron from "node-cron"
-import { getStatusMac } from "./getStatusMac.js"
-import { updateStatus } from "../api/status/updateStatus.js"
-import { MusicProvider } from "../types/MusicProvider.js"
+import { getStatusMac } from "./getStatusMac"
+import { updateStatus } from "../api/status/updateStatus"
+import { MusicProvider } from "../types/MusicProvider"
 
 export const statusTask = (provider: MusicProvider) => {
   const task = async () => {

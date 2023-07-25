@@ -1,8 +1,8 @@
 import inquirer, { QuestionCollection } from "inquirer"
-import { verifyAuth } from "../api/auth/verifyAuth.js"
-import { Messages } from "../constants/messages.js"
-import { MusicProviders } from "../constants/musicProviders.js"
-import { MusicProvider } from "../types/MusicProvider.js"
+import { verifyAuth } from "../api/auth/verifyAuth"
+import { Messages } from "../constants/messages"
+import { MusicProviders } from "../constants/musicProviders"
+import { MusicProvider } from "../types/MusicProvider"
 
 const questions: QuestionCollection = [
   {

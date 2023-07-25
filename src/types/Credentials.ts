@@ -1,4 +1,4 @@
-import { MusicProvider } from "./MusicProvider.js"
+import { MusicProvider } from "./MusicProvider"
 
 export type Credentials = {
   provider: MusicProvider

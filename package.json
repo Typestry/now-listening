@@ -23,7 +23,8 @@
     "test:unit:ci": "jest --ci --runInBand",
     "test:prettier": "npx prettier . --check",
     "test:prettier:fix": "npx prettier . --write",
-    "test:ci": "cross-env CI=true run-s test:prettier test:unit:ci"
+    "test:ci": "cross-env CI=true run-s test:prettier test:unit:ci",
+    "prepublish": "run-s test:ci build"
   },
   "main": "dist/app.js",
   "bin": {

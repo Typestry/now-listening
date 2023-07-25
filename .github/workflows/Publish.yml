@@ -1,21 +1,15 @@
-name: "tagged-release"
+name: Publish
 
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - release
+
 jobs:
-  tagged-release:
-    name: "Tagged Release"
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: "Build & test"
-        run: |
-          echo "done!"
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.PUBLISH_TOKEN }}"
-          prerelease: false
+  get-version:
+    id: package-version
+    uses: martinbeentjes/npm-get-version-action@v1.3.1
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -29,3 +23,15 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  tagged-release:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Build & test"
+        run: |
+          echo "done!"
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          automatic_release_tag: "${{ steps.package-version.outputs.current-version }}"
+          repo_token: "${{ secrets.PUBLISH_TOKEN }}"
+          prerelease: false

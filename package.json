@@ -4,6 +4,10 @@
   "description": "A CLI application for sharing currently playing music to Slack",
   "type": "module",
   "homepage": "https://github.com/thispastwinter/now-listening",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thispastwinter/now-listening"
+  },
   "keywords": [
     "slack",
     "music",

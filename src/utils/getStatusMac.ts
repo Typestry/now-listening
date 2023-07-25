@@ -1,5 +1,5 @@
 import applescript from "applescript"
-import { StatusGetter } from "../types/StatusGetter.js"
+import { StatusGetter } from "../types/StatusGetter"
 
 export const getStatusMac: StatusGetter = (provider) => {
   const script = `tell application "${provider}" to get player state & (get {name, artist} of current track)`

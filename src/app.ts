@@ -1,9 +1,9 @@
-import { Messages } from "./constants/messages.js"
-import { MusicProvider } from "./types/MusicProvider.js"
-import { getAnswers } from "./utils/getAnswers.js"
-import { getCredentials } from "./utils/getCredentials.js"
-import { statusTask } from "./utils/statusTask.js"
-import { writeCredentials } from "./utils/writeCredentials.js"
+import { Messages } from "./constants/messages"
+import { MusicProvider } from "./types/MusicProvider"
+import { getAnswers } from "./utils/getAnswers"
+import { getCredentials } from "./utils/getCredentials"
+import { statusTask } from "./utils/statusTask"
+import { writeCredentials } from "./utils/writeCredentials"
 
 export const app = async () => {
   let token = ""

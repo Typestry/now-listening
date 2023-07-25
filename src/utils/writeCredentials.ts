@@ -1,6 +1,6 @@
 import { writeFile } from "fs"
-import { FILE_PATH } from "../constants/filesystem.js"
-import { Messages } from "../constants/messages.js"
+import { FILE_PATH } from "../constants/filesystem"
+import { Messages } from "../constants/messages"
 
 export const writeCredentials = (content: string) => {
   writeFile(FILE_PATH, content, (err) => {

@@ -13,14 +13,14 @@
     "applescript"
   ],
   "scripts": {
-    "start": "ts-node-esm ./src/index.ts",
-    "build": "npx tsc",
+    "build": "rollup -c",
+    "dev": "rollup -c --watch",
     "prettier": "npx prettier . --write",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "main": "dist/index.js",
+  "main": "src/app.js",
   "bin": {
-    "now-listening": "./dist/index.js"
+    "now-listening": "bin/now-listening.js"
   },
   "author": "Justin Klaas",
   "license": "ISC",
@@ -33,9 +33,11 @@
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.2",
     "@types/inquirer": "^9.0.3",
     "@types/node-cron": "^3.0.8",
     "prettier": "^3.0.0",
+    "rollup": "^3.26.3",
     "typescript": "^5.1.6"
   }
 }

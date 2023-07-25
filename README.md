@@ -2,6 +2,8 @@
 <img src="https://github.com/thispastwinter/now-listening/blob/main/images/banner.png?raw=true" />
 &nbsp;&nbsp;
 
+![example workflow](https://github.com/thispastwinter/now-listening/actions/workflows/CI.yml/badge.svg)
+
 ## Please Note
 
 This assumes you have already created a slack app in your current workspace and added the appropriate permissions. For this app to work, you'll want to include the following scope(s): `users.profile:write`. If you don't know where to start, read the slack app documentation [here](https://api.slack.com/start/apps)!

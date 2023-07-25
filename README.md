@@ -3,6 +3,7 @@
 &nbsp;&nbsp;
 
 ![example workflow](https://github.com/thispastwinter/now-listening/actions/workflows/CI.yml/badge.svg)
+[![codecov](https://codecov.io/gh/thispastwinter/now-listening/branch/main/graph/badge.svg?token=U1EZEJ0EMZ)](https://codecov.io/gh/thispastwinter/now-listening)
 
 ## Please Note
 

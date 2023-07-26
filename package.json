@@ -1,6 +1,6 @@
 {
   "name": "now-listening",
-  "version": "1.2.4",
+  "version": "1.2.6",
   "description": "A CLI application for sharing currently playing music to Slack",
   "type": "module",
   "homepage": "https://github.com/thispastwinter/now-listening",
@@ -23,8 +23,7 @@
     "test:unit:ci": "jest --ci --runInBand",
     "test:prettier": "npx prettier . --check",
     "test:prettier:fix": "npx prettier . --write",
-    "test:ci": "cross-env CI=true run-s test:prettier test:unit:ci",
-    "prepublish": "run-s test:ci build"
+    "test:ci": "cross-env CI=true run-s test:prettier test:unit:ci"
   },
   "main": "dist/app.js",
   "bin": {

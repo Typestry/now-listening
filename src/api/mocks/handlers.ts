@@ -21,6 +21,11 @@ const verifyAuth = rest.post(TestRoutes.auth(), (req, res, ctx) => {
   if (token === "Bearer test_token") {
     ok = true
   }
+
+  if (!token) {
+    return res(ctx.status(500))
+  }
+
   return res(ctx.json({ ok }))
 })
 

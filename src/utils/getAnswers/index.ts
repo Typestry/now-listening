@@ -1,0 +1,1 @@
+export { getAnswers } from "./getAnswers"

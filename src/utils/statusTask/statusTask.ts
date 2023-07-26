@@ -1,6 +1,6 @@
-import { getStatusMac } from "./getStatusMac"
-import { updateStatus } from "../api/status/updateStatus"
-import { MusicProvider } from "../types/MusicProvider"
+import { getStatusMac } from "../getStatusMac"
+import { updateStatus } from "../../api/status/updateStatus"
+import { MusicProvider } from "../../types/MusicProvider"
 
 export const statusTask = async (provider: MusicProvider) => {
   switch (process.platform) {

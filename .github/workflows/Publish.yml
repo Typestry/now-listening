@@ -25,16 +25,16 @@ jobs:
     steps:
       - name: get-version
         id: package-version
-        run: ./.github/scripts/get-version.sh
-        shell: bash
+        run: |
+          echo "PACKAGE_VERSION=$(node -p -e "require('../../package.json').version")"
       - name: create-release
         id: create-release
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         with:
-          tag_name: ${{ steps.package-version.outputs }}
-          release_name: ${{ steps.package-version.outputs }}
+          tag_name: ${{ steps.package-version.outputs.PACKAGE_VERSION }}
+          release_name: ${{ steps.package-version.outputs.PACKAGE_VERSION }}
           body: |
             ${{ steps.Changelog.outputs.changelog }}
           prerelease: false

@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,20 +17,17 @@ jobs:
           registry-url: https://registry.npmjs.org
       - run: npm ci
       - run: npm publish
+        id: "publish"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  release:
-    runs-on: ubuntu-latest
-    steps:
       - name: create-release
         id: create-release
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         with:
-          tag_name: ${{ steps.create-release.outputs }}
-          release_name: ${{ steps.create-release.outputs }}
+          tag_name: ${{ steps.publish.outputs.version }}
+          release_name: ${{ steps.publish.outputs.version }}
           body: |
             ${{ steps.Changelog.outputs.changelog }}
           prerelease: false

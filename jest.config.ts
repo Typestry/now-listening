@@ -8,6 +8,7 @@ const config = async (): Promise<Config> => ({
   rootDir: ".",
   extensionsToTreatAsEsm: [".ts"],
   setupFilesAfterEnv: ["<rootDir>/setupTests.ts"],
+  coveragePathIgnorePatterns: ["/mocks/i"],
 })
 
 export default config

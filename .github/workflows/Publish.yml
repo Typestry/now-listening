@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,22 +17,21 @@ jobs:
           registry-url: https://registry.npmjs.org
       - run: npm ci
       - run: npm publish
+        id: "publish"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  release:
-    runs-on: ubuntu-latest
-    steps:
       - name: get-version
-        id: package-version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
+        id: package-version
       - name: create-release
         id: create-release
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         with:
-          tag_name: v${{ steps.package-version.outputs.current-version }}
-          release_name: v${{ steps.package-version.outputs.current-version }}
+          tag_name: ${{ steps.package-version.outputs.current-version }}
+          release_name: ${{ steps.package-version.outputs.current-version }}
+          body: |
+            ${{ steps.Changelog.outputs.changelog }}
           prerelease: false
           draft: false

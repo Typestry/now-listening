@@ -8,7 +8,11 @@ export const getStatusMac: StatusGetter = (provider) => {
     applescript.execString(script, async (err, result) => {
       // In some cases a TypeError is thrown most often when the player isn't playing music
       // Thus we are currently ignoring TyperErrors
-      if (err && !(err instanceof TypeError)) {
+      if (err instanceof TypeError) {
+        resolve(null)
+      }
+
+      if (err) {
         console.error(err)
       }
 

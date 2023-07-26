@@ -71,7 +71,7 @@ describe("statusTask", () => {
     )
   })
 
-  it("logs an error if error type is not 'TypeError'", async () => {
+  it("logs an error if error type is not TypeError", async () => {
     // Arrange
     const errorMessage = "Something went wrong!"
     applescriptMock.mockImplementation((_script, args) =>
@@ -83,5 +83,18 @@ describe("statusTask", () => {
 
     // Assert
     expect(console.error).toHaveBeenCalledWith(errorMessage)
+  })
+
+  it("returns null if error is TypeError", async () => {
+    // Arrange
+    applescriptMock.mockImplementation((_script, args) =>
+      args(new TypeError("result is not iterable"), []),
+    )
+
+    // Act
+    const result = await getStatusMac("Music")
+
+    // Assert
+    expect(result).toBeNull()
   })
 })

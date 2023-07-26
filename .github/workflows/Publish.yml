@@ -23,18 +23,14 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: get-version
-        id: package-version
-        run: |
-          echo "PACKAGE_VERSION=$(node -p -e "require('../../package.json').version")"
       - name: create-release
         id: create-release
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         with:
-          tag_name: ${{ steps.package-version.outputs.PACKAGE_VERSION }}
-          release_name: ${{ steps.package-version.outputs.PACKAGE_VERSION }}
+          tag_name: ${{ steps.create-release.outputs }}
+          release_name: ${{ steps.create-release.outputs }}
           body: |
             ${{ steps.Changelog.outputs.changelog }}
           prerelease: false

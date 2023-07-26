@@ -71,7 +71,7 @@ describe("statusTask", () => {
     )
   })
 
-  it("logs an error if error type is not 'TypeError'", async () => {
+  it("logs an error if error type is not TypeError", async () => {
     // Arrange
     const errorMessage = "Something went wrong!"
     applescriptMock.mockImplementation((_script, args) =>

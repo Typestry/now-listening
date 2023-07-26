@@ -20,14 +20,17 @@ jobs:
         id: "publish"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: get-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        id: package-version
       - name: create-release
         id: create-release
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         with:
-          tag_name: ${{ steps.publish.outputs.version }}
-          release_name: ${{ steps.publish.outputs.version }}
+          tag_name: ${{ steps.package-version.outputs.current-version }}
+          release_name: ${{ steps.package-version.outputs.current-version }}
           body: |
             ${{ steps.Changelog.outputs.changelog }}
           prerelease: false

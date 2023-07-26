@@ -1,6 +1,6 @@
 {
   "name": "now-listening",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "A CLI application for sharing currently playing music to Slack",
   "type": "module",
   "homepage": "https://github.com/thispastwinter/now-listening",

@@ -1,12 +1,9 @@
 import { rest } from "msw"
 import { TestRoutes, UserRoutes } from "../../constants/api"
 
-const updateStatusMock = rest.post(
-  UserRoutes.writeProfile(),
-  (_req, res, ctx) => {
-    return res(ctx.status(200))
-  },
-)
+const updateStatus = rest.post(UserRoutes.writeProfile(), (_req, res, ctx) => {
+  return res(ctx.status(200))
+})
 
 const verifyAuth = rest.post(TestRoutes.auth(), (req, res, ctx) => {
   const token = req.headers.get("Authorization")
@@ -17,4 +14,4 @@ const verifyAuth = rest.post(TestRoutes.auth(), (req, res, ctx) => {
   return res(ctx.json({ ok }))
 })
 
-export const handlers = [updateStatusMock, verifyAuth]
+export const handlers = [updateStatus, verifyAuth]

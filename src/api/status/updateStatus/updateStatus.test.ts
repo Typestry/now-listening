@@ -3,6 +3,8 @@ import { updateStatus } from "./updateStatus"
 import { cache } from "../../../cache"
 import { CacheKeys } from "../../../constants/cache"
 
+jest.spyOn(console, "log")
+
 describe("updateStatus", () => {
   afterEach(() => {
     jest.clearAllMocks()
@@ -15,10 +17,14 @@ describe("updateStatus", () => {
     }
 
     // Act
-    const response = await updateStatus(payload)
+    const result = await updateStatus(payload)
+    const prevStatus = cache.get(CacheKeys.status())
 
     // Assert
-    expect(response).resolves
+    expect(prevStatus).toEqual(payload.status_text)
+    expect(console.log).toHaveBeenCalledWith(
+      "Successfully updated status with:  hello by world",
+    )
   })
 
   it("does not invoke request if payload received is null", async () => {

@@ -1,0 +1,1 @@
+export { getStatusMac } from "./getStatusMac"

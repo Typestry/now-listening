@@ -1,6 +1,6 @@
 {
   "name": "now-listening",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "A CLI application for sharing currently playing music to Slack",
   "type": "module",
   "homepage": "https://github.com/thispastwinter/now-listening",
@@ -46,6 +46,7 @@
     "@types/node-cron": "^3.0.8",
     "cross-env": "^7.0.3",
     "jest": "^29.6.1",
+    "msw": "^1.2.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.0",
     "rollup": "^3.26.3",

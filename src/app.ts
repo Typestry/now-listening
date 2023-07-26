@@ -1,8 +1,8 @@
 import { Messages } from "./constants/messages"
 import { MusicProvider } from "./types/MusicProvider"
-import { getAnswers } from "./utils/getAnswers"
+import { getAnswers } from "./utils/getAnswers/getAnswers"
 import { getCredentials } from "./utils/getCredentials"
-import { statusTask } from "./utils/statusTask"
+import { statusTask } from "./utils/statusTask/statusTask"
 import { writeCredentials } from "./utils/writeCredentials"
 import nodeCron from "node-cron"
 

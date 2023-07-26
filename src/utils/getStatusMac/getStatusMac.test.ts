@@ -1,4 +1,4 @@
-import { getStatusMac } from "../src/utils/getStatusMac"
+import { getStatusMac } from "./getStatusMac"
 import applescript from "applescript"
 
 const applescriptMock = jest.spyOn(applescript, "execString")

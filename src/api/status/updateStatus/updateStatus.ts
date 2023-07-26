@@ -1,8 +1,8 @@
-import { cache } from "../../cache/index"
-import { UserRoutes } from "../../constants/api"
-import { CacheKeys } from "../../constants/cache"
-import { ProfilePartial } from "../../types/ProfilePartial"
-import { client } from "../client"
+import { cache } from "../../../cache/index"
+import { UserRoutes } from "../../../constants/api"
+import { CacheKeys } from "../../../constants/cache"
+import { ProfilePartial } from "../../../types/ProfilePartial"
+import { client } from "../../client"
 
 export const updateStatus = async (payload: ProfilePartial | null) => {
   if (payload === null) {
@@ -12,7 +12,7 @@ export const updateStatus = async (payload: ProfilePartial | null) => {
   const { status_text, status_emoji } = payload
   const prevStatus = cache.get(CacheKeys.status())
 
-  if (prevStatus === payload) {
+  if (prevStatus === payload.status_text) {
     return
   }
 

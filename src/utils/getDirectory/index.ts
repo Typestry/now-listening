@@ -1,0 +1,1 @@
+export { getDirectory } from "./getDirectory"

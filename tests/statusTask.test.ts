@@ -2,6 +2,7 @@ import { getStatusMac } from "../src/utils/getStatusMac"
 import { statusTask } from "../src/utils/statusTask"
 
 jest.mock("../src/utils/getStatusMac")
+jest.mock("../src/constants/filesystem", () => ({ getDirectory: jest.fn() }))
 jest.mock("../src/api/status/updateStatus")
 jest.spyOn(console, "error")
 

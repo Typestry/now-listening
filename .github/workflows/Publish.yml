@@ -3,13 +3,9 @@ name: Publish
 on:
   push:
     branches:
-      - release
+      - main
 
 jobs:
-  get-version:
-    id: package-version
-    uses: martinbeentjes/npm-get-version-action@v1.3.1
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -27,6 +23,9 @@ jobs:
   tagged-release:
     runs-on: "ubuntu-latest"
     steps:
+      - name: get-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
       - name: "Build & test"
         run: |
           echo "done!"

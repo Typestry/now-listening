@@ -22,4 +22,15 @@ describe("verifyAuth", () => {
     // Assert
     expect(result).toBe(false)
   })
+
+  it("returns 'false' when an error is thrown", async () => {
+    // Arrange
+    const token = ""
+
+    // Act
+    const result = await verifyAuth(token)
+
+    // Assert
+    expect(result).toBe(false)
+  })
 })

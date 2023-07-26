@@ -25,17 +25,16 @@ jobs:
     steps:
       - name: get-version
         id: package-version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
-        with:
-          path: "../.."
+        run: ./.github/scripts/get-version.sh
+        shell: bash
       - name: create-release
         id: create-release
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         with:
-          tag_name: ${{ steps.package-version.outputs.current-version }}
-          release_name: ${{ steps.package-version.outputs.current-version }}
+          tag_name: ${{ steps.package-version.outputs }}
+          release_name: ${{ steps.package-version.outputs }}
           body: |
             ${{ steps.Changelog.outputs.changelog }}
           prerelease: false

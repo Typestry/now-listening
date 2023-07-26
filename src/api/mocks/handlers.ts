@@ -10,7 +10,6 @@ const updateStatusMock = rest.post(
 
 const verifyAuth = rest.post(TestRoutes.auth(), (req, res, ctx) => {
   const token = req.headers.get("Authorization")
-  console.log(token)
   let ok = false
   if (token === "Bearer test_token") {
     ok = true

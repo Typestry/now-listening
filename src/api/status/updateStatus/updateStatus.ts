@@ -25,6 +25,6 @@ export const updateStatus = async (payload: ProfilePartial | null) => {
       )
     })
     .catch(function (error) {
-      console.error(error)
+      console.error(error.message)
     })
 }

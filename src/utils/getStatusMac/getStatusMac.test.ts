@@ -3,6 +3,8 @@ import applescript from "applescript"
 
 const applescriptMock = jest.spyOn(applescript, "execString")
 
+jest.spyOn(console, "error")
+
 describe("statusTask", () => {
   it("returns emoji and status text when state is 'playing'", async () => {
     // Arrange
@@ -67,5 +69,19 @@ describe("statusTask", () => {
     expect(getScript).toHaveBeenCalledWith(
       `tell application "${provider}" to get player state & (get {name, artist} of current track)`,
     )
+  })
+
+  it("logs an error if error type is not 'TypeError'", async () => {
+    // Arrange
+    const errorMessage = "Something went wrong!"
+    applescriptMock.mockImplementation((_script, args) =>
+      args(errorMessage, ["playing", "hello", "world"]),
+    )
+
+    // Act
+    await getStatusMac("Music")
+
+    // Assert
+    expect(console.error).toHaveBeenCalledWith(errorMessage)
   })
 })

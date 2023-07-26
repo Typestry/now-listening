@@ -1,10 +1,17 @@
 import { rest } from "msw"
 import { TestRoutes, UserRoutes } from "../../constants/api"
+import { ProfilePartial } from "../../types/ProfilePartial"
 
-const updateStatusMock = rest.post(
+const updateStatus = rest.post(
   UserRoutes.writeProfile(),
-  (_req, res, ctx) => {
-    return res(ctx.status(200))
+  async (req, res, ctx) => {
+    const { profile }: { profile: ProfilePartial } = await req.json()
+
+    if (profile.status_emoji && profile.status_text) {
+      return res(ctx.status(200))
+    } else {
+      return res(ctx.status(500))
+    }
   },
 )
 
@@ -14,7 +21,12 @@ const verifyAuth = rest.post(TestRoutes.auth(), (req, res, ctx) => {
   if (token === "Bearer test_token") {
     ok = true
   }
+
+  if (!token) {
+    return res(ctx.status(500))
+  }
+
   return res(ctx.json({ ok }))
 })
 
-export const handlers = [updateStatusMock, verifyAuth]
+export const handlers = [updateStatus, verifyAuth]

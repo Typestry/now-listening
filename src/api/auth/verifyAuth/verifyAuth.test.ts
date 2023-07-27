@@ -1,3 +1,4 @@
+import axios from "axios"
 import { verifyAuth } from "./verifyAuth"
 
 describe("verifyAuth", () => {
@@ -23,9 +24,12 @@ describe("verifyAuth", () => {
     expect(result).toBe(false)
   })
 
-  it("returns 'false' when an error is thrown", async () => {
+  it("returns false when an error is thrown", async () => {
     // Arrange
-    const token = ""
+    jest
+      .spyOn(axios, "post")
+      .mockImplementation(() => Promise.reject("An error has occured."))
+    const token = "test_token"
 
     // Act
     const result = await verifyAuth(token)

@@ -6,27 +6,29 @@ export const getStatusMac: StatusGetter = (provider) => {
 
   return new Promise((resolve) => {
     applescript.execString(script, async (err, result) => {
-      // In some cases a TypeError is thrown most often when the player isn't playing music
-      // Thus we are currently ignoring TyperErrors
-      if (err instanceof TypeError) {
+      try {
+        if (err) {
+          throw err
+        }
+
+        if (result) {
+          const [state, song, artist] = result
+
+          if (state === "paused") {
+            resolve(null)
+          }
+
+          const status_emoji = "🎶"
+          const status_text = `${song} by ${artist}`
+          const payload = { status_emoji, status_text }
+
+          resolve(payload)
+        } else {
+          throw TypeError("Result not iterable.")
+        }
+      } catch (err) {
         resolve(null)
       }
-
-      if (err) {
-        console.error(err)
-      }
-
-      const [state, song, artist] = result
-
-      if (state === "paused") {
-        resolve(null)
-      }
-
-      const status_emoji = "🎶"
-      const status_text = `${song} by ${artist}`
-      const payload = { status_emoji, status_text }
-
-      resolve(payload)
     })
   })
 }

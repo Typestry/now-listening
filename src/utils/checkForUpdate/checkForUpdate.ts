@@ -1,6 +1,7 @@
 // adapted from https://stackoverflow.com/questions/65442325/how-to-notify-npm-package-version-update-to-user
 import semver from "semver"
 import semverDiff from "semver-diff"
+import { capitalize } from "../capitalize"
 
 export const checkForUpdate = async (
   latestPackage: Record<string, any>,
@@ -20,10 +21,4 @@ export const checkForUpdate = async (
 
     return { updateType, localVersion, latestVersion }
   }
-}
-
-const capitalize = (text: string) => {
-  const firstChar = text.charAt(0)
-  const capitalized = firstChar.toUpperCase() + text.split(firstChar)[1]
-  return capitalized
 }

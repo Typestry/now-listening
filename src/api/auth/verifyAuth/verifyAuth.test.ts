@@ -1,4 +1,6 @@
+import axios from "axios"
 import { verifyAuth } from "./verifyAuth"
+import { describe, it, expect, vi } from "vitest"
 
 describe("verifyAuth", () => {
   it("returns true if token is valid", async () => {
@@ -23,9 +25,12 @@ describe("verifyAuth", () => {
     expect(result).toBe(false)
   })
 
-  it("returns 'false' when an error is thrown", async () => {
+  it("returns false when an error is thrown", async () => {
     // Arrange
-    const token = ""
+    vi.spyOn(axios, "post").mockImplementation(() =>
+      Promise.reject("An error has occured."),
+    )
+    const token = "test_token"
 
     // Act
     const result = await verifyAuth(token)

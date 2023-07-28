@@ -1,9 +1,10 @@
 import { getStatusMac } from "./getStatusMac"
+import { describe, it, expect, vi } from "vitest"
 import applescript from "applescript"
 
-const applescriptMock = jest.spyOn(applescript, "execString")
+const applescriptMock = vi.spyOn(applescript, "execString")
 
-jest.spyOn(console, "error")
+vi.spyOn(console, "error")
 
 describe("statusTask", () => {
   it("returns emoji and status text when state is 'playing'", async () => {
@@ -38,7 +39,7 @@ describe("statusTask", () => {
   it("passes 'Music' into script when provider is 'Music'", async () => {
     // Arrange
     const provider = "Music"
-    const getScript = jest.fn()
+    const getScript = vi.fn()
     applescriptMock.mockImplementation((script, args) => {
       getScript(script)
       args(null, ["paused"])
@@ -56,7 +57,7 @@ describe("statusTask", () => {
   it("passes 'Spotify' into script when provider is 'Spotify'", async () => {
     // Arrange
     const provider = "Spotify"
-    const getScript = jest.fn()
+    const getScript = vi.fn()
     applescriptMock.mockImplementation((script, args) => {
       getScript(script)
       args(null, ["paused"])

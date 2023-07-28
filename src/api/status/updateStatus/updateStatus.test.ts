@@ -2,13 +2,14 @@ import { ProfilePartial } from "../../../types/ProfilePartial"
 import { updateStatus } from "./updateStatus"
 import { cache } from "../../../cache"
 import { CacheKeys } from "../../../constants/cache"
+import { vi, describe, afterEach, it, expect } from "vitest"
 
-jest.spyOn(console, "log")
-jest.spyOn(console, "error")
+vi.spyOn(console, "log")
+vi.spyOn(console, "error")
 
 describe("updateStatus", () => {
   afterEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
   it("invokes request if there is a valid payload", async () => {
     // Arrange

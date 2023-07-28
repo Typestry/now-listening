@@ -1,9 +1,10 @@
 import { getStatusMac } from "../getStatusMac"
 import { statusTask } from "./statusTask"
+import { describe, it, expect, vi } from "vitest"
 
-jest.mock("../getStatusMac")
-jest.mock("../../api/status/updateStatus")
-jest.spyOn(console, "error")
+vi.mock("../getStatusMac")
+vi.mock("../../api/status/updateStatus")
+vi.spyOn(console, "error")
 
 describe("statusTask", () => {
   it("invokes a task method with provider 'Music' when ran on a supported platform", async () => {

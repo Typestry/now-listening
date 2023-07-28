@@ -10,11 +10,16 @@ import localPackage from "../package.json"
 import nodeCron from "node-cron"
 import boxen from "boxen"
 import { getUpdateMessage } from "./utils/checkForUpdate"
+import figlet from "figlet"
+import chalk from "chalk"
+import { Branding } from "./constants/branding"
 
 export const app = async () => {
   let token = ""
   let provider: MusicProvider = "Music"
   const { name } = localPackage
+
+  banner()
 
   try {
     const latestPackage = await packageJson(name)
@@ -53,3 +58,22 @@ export const app = async () => {
 
   nodeCron.schedule("* * * * *", async () => await statusTask(provider))
 }
+
+const banner = () =>
+  console.log(
+    chalk.cyan(
+      boxen(
+        figlet.textSync(Branding.name, {
+          font: "Slant",
+          horizontalLayout: "default",
+          verticalLayout: "default",
+          width: 80,
+          whitespaceBreak: true,
+        }) + `\n${Branding.tag_line}`,
+        {
+          margin: { left: 1, top: 1 },
+          borderStyle: "none",
+        },
+      ),
+    ),
+  )

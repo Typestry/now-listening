@@ -9,33 +9,30 @@ import packageJson from "package-json"
 import localPackage from "../package.json"
 import nodeCron from "node-cron"
 import boxen from "boxen"
-import chalk from "chalk"
+import { getUpdateMessage } from "./utils/checkForUpdate"
 
 export const app = async () => {
   let token = ""
   let provider: MusicProvider = "Music"
+  const { name } = localPackage
 
   try {
-    const latestVersion = await packageJson(localPackage.name)
-    const update = await checkForUpdate(latestVersion, localPackage)
+    const latestPackage = await packageJson(name)
+    const metaData = await checkForUpdate(latestPackage, localPackage)
 
-    if (update) {
-      const { latestVersion, localVersion, updateType } = update
-      const msg = {
-        updateAvailable: `${updateType} update available ${chalk.dim(
-          localVersion,
-        )} → ${chalk.green(latestVersion)}`,
-        runUpdate: `Run ${chalk.cyan(`npm i -g ${name}`)} to update`,
-      }
+    if (metaData) {
+      const message = getUpdateMessage({ ...metaData, name })
 
-      boxen(`${msg.updateAvailable}\n${msg.runUpdate}`, {
-        padding: 1,
-        margin: {
-          top: 1,
-          bottom: 1,
-        },
-        borderStyle: "round",
-      })
+      console.log(
+        boxen(message, {
+          padding: 1,
+          margin: {
+            top: 1,
+            bottom: 1,
+          },
+          borderStyle: "round",
+        }),
+      )
     }
 
     const credentials = getCredentials()

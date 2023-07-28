@@ -1,12 +1,13 @@
 import { server } from "./src/api/mocks/server"
+import { vi } from "vitest"
 
-jest.mock("./src/utils/getCredentials", () => ({
+vi.mock("./src/utils/getCredentials", () => ({
   getCredentials: () => {
     return { token: "test_token" }
   },
 }))
 
-jest.mock("./src/utils/getDirectory", () => ({
+vi.mock("./src/utils/getDirectory", () => ({
   getDirectory: () => {
     return { directory: "" }
   },

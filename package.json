@@ -19,8 +19,9 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c --watch",
-    "test:unit": "jest --watch",
-    "test:unit:ci": "jest --ci --runInBand",
+    "test:unit": "vitest --watch",
+    "test:unit:ci": "vitest",
+    "test:unit:coverage": "vitest run --coverage",
     "test:prettier": "npx prettier . --check",
     "test:prettier:fix": "npx prettier . --write",
     "test:ci": "cross-env CI=true run-s test:prettier test:unit:ci",
@@ -33,25 +34,33 @@
   "author": "Justin Klaas",
   "license": "ISC",
   "dependencies": {
+    "@rollup/plugin-json": "^6.0.0",
     "applescript": "^1.0.0",
     "axios": "1.1.3",
+    "boxen": "^7.1.1",
+    "chalk": "^5.3.0",
     "inquirer": "^9.2.8",
     "node-cache": "^5.1.2",
-    "node-cron": "^3.0.2"
+    "node-cron": "^3.0.2",
+    "package-json": "^8.1.1",
+    "semver": "^7.5.4",
+    "semver-diff": "^4.0.0",
+    "update-notifier": "^6.0.2"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.2",
     "@types/inquirer": "^9.0.3",
-    "@types/jest": "^29.5.3",
     "@types/node-cron": "^3.0.8",
+    "@types/semver": "^7.5.0",
+    "@types/update-notifier": "^6.0.4",
+    "@vitest/coverage-v8": "^0.33.0",
     "cross-env": "^7.0.3",
-    "jest": "^29.6.1",
     "msw": "^1.2.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.0",
     "rollup": "^3.26.3",
-    "ts-jest": "^29.1.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vitest": "^0.33.0",
+    "vitest-mock-extended": "^1.1.4"
   }
 }

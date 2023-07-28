@@ -71,7 +71,7 @@ const banner = () =>
           whitespaceBreak: true,
         }) + `\n${Branding.tag_line}`,
         {
-          margin: { left: 1, top: 1 },
+          margin: 1,
           borderStyle: "none",
         },
       ),

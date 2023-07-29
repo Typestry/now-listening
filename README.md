@@ -112,5 +112,5 @@ We value collaboration and are here to support you throughout the process. Feel 
 ### Important Notes
 
 - We will not accept direct pull requests to the `main` branch. All contributions must be made through pull requests targeting the `development` branch.
-- Contributions must be made under the terms of the [LICENSE](LICENSE) of this project.
+- Contributions must be made under the terms of the [LICENSE](LICENSE.md) of this project.
 - Be respectful and considerate of others' work and opinions. We welcome constructive feedback and collaboration.

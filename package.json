@@ -17,10 +17,9 @@
     "applescript"
   ],
   "scripts": {
-    "prestart": "npm run build",
-    "start": "npx node ./bin/now-listening.js",
+    "start": "node ./bin/now-listening.js",
     "build": "rollup -c",
-    "dev": "rollup -c --watch",
+    "dev": "nodemon -e js,ts --watch src --exec \"run-s build start\"",
     "test:unit": "vitest --watch",
     "test:unit:ci": "vitest",
     "test:unit:coverage": "vitest run --coverage",
@@ -51,7 +50,6 @@
   },
   "devDependencies": {
     "@rollup/plugin-json": "^6.0.0",
-    "@rollup/plugin-run": "^3.0.1",
     "@rollup/plugin-typescript": "^11.1.2",
     "@types/figlet": "^1.5.6",
     "@types/inquirer": "^9.0.3",
@@ -67,6 +65,7 @@
     "eslint-plugin-import": "^2.28.0",
     "eslint-plugin-prettier": "^5.0.0",
     "msw": "^1.2.3",
+    "nodemon": "^3.0.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.0",
     "rollup": "^3.26.3",

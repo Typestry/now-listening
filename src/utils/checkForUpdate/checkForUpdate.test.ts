@@ -1,5 +1,5 @@
-import { checkForUpdate } from "./checkForUpdate"
 import { describe, it, expect, vi, afterEach } from "vitest"
+import { checkForUpdate } from "./checkForUpdate"
 
 describe("checkForUpdate", () => {
   afterEach(() => {

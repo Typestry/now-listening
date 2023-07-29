@@ -13,7 +13,6 @@ import { getUpdateMessage } from "./utils/checkForUpdate"
 import figlet from "figlet"
 import chalk from "chalk"
 import { Branding } from "./constants/branding"
-import { Emojis } from "./constants/emojis"
 import { Emoji } from "./types/Emoji"
 
 export const app = async () => {

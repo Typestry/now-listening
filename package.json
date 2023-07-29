@@ -25,7 +25,9 @@
     "test:unit:coverage": "vitest run --coverage",
     "test:prettier": "npx prettier . --check",
     "test:prettier:fix": "npx prettier . --write",
-    "test:ci": "cross-env CI=true run-s test:prettier test:unit:ci",
+    "test:lint": "eslint ./src",
+    "test:lint:fix": "npm run test:lint -- --fix",
+    "test:ci": "cross-env CI=true run-s test:prettier test:lint test:unit:ci",
     "prepublishOnly": "run-s test:unit:ci build"
   },
   "main": "dist/app.js",

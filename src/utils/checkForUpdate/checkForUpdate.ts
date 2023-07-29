@@ -4,8 +4,8 @@ import semverDiff from "semver-diff"
 import { capitalize } from "../capitalize"
 
 export const checkForUpdate = async (
-  latestPackage: Record<string, any>,
-  localPackage: Record<string, any>,
+  latestPackage: Record<string, string>,
+  localPackage: Record<string, string>,
 ) => {
   const localVersion = localPackage.version
   const latestVersion = latestPackage.version
@@ -13,7 +13,7 @@ export const checkForUpdate = async (
 
   if (isOutdated) {
     let updateType = ""
-    let verDiff = semverDiff(localVersion, latestVersion)
+    const verDiff = semverDiff(localVersion, latestVersion)
 
     if (verDiff) {
       updateType = capitalize(verDiff)

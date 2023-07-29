@@ -3,9 +3,10 @@ import { updateStatus } from "../../api/status/updateStatus"
 import { MusicProvider } from "../../types/MusicProvider"
 
 export const statusTask = async (provider: MusicProvider) => {
+  let payload
   switch (process.platform) {
     case "darwin":
-      const payload = await getStatusMac(provider)
+      payload = await getStatusMac(provider)
       await updateStatus(payload)
       break
     case "linux":

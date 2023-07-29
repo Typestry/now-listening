@@ -1,6 +1,7 @@
 import { getStatusMac } from "./getStatusMac"
 import { describe, it, expect, vi } from "vitest"
 import applescript from "applescript"
+import { Emojis } from "../../constants/emojis"
 
 const applescriptMock = vi.spyOn(applescript, "execString")
 
@@ -18,7 +19,7 @@ describe("statusTask", () => {
 
     // Assert
     expect(result).toStrictEqual({
-      status_emoji: "🎶",
+      status_emoji: Emojis["Musical Notes"],
       status_text: "hello by world",
     })
   })

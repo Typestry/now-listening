@@ -19,5 +19,6 @@ export const getUpdateMessage = ({
     )} → ${chalk.green(latestVersion)}`,
     runUpdate: `Run ${chalk.cyan(`npm i -g ${name}`)} to update`,
   }
+
   return `${msg.updateAvailable}\n${msg.runUpdate}`
 }

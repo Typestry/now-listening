@@ -1,7 +1,7 @@
+import { describe, it, expect, vi } from "vitest"
 import { Emojis } from "../../constants/emojis"
 import { getStatusMac } from "../getStatusMac"
 import { statusTask } from "./statusTask"
-import { describe, it, expect, vi } from "vitest"
 
 vi.mock("../getStatusMac")
 vi.mock("../../api/status/updateStatus")

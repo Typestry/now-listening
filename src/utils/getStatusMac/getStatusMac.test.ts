@@ -1,7 +1,7 @@
-import { getStatusMac } from "./getStatusMac"
 import { describe, it, expect, vi } from "vitest"
 import applescript from "applescript"
 import { Emojis } from "../../constants/emojis"
+import { getStatusMac } from "./getStatusMac"
 
 const applescriptMock = vi.spyOn(applescript, "execString")
 

@@ -1,6 +1,6 @@
 import axios from "axios"
-import { verifyAuth } from "./verifyAuth"
 import { describe, it, expect, vi } from "vitest"
+import { verifyAuth } from "./verifyAuth"
 
 describe("verifyAuth", () => {
   it("returns true if token is valid", async () => {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 declare module "applescript" {
   // Add methods as needed. Currently this is the only method used in this project.
   export const execString = (

@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from "vitest"
-import { MetaData, getUpdateMessage } from "./getUpdateMessage"
+import { describe, it, expect } from "vitest"
 import stripAnsi from "strip-ansi"
+import { MetaData, getUpdateMessage } from "./getUpdateMessage"
 
 describe("getUpdateMessage", () => {
   it("parses metaData into formatted message", () => {

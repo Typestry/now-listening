@@ -2,7 +2,7 @@ import inquirer, { QuestionCollection } from "inquirer"
 import { verifyAuth } from "../../api/auth/verifyAuth/verifyAuth"
 import { Messages } from "../../constants/messages"
 import { MusicProviders } from "../../constants/musicProviders"
-import { MusicProvider } from "../../types/MusicProvider"
+import { Emojis } from "../../constants/emojis"
 
 const questions: QuestionCollection = [
   {
@@ -24,21 +24,16 @@ const questions: QuestionCollection = [
     },
   },
   {
-    name: "options",
+    name: "provider",
     message: Messages.provider_question,
-    type: "checkbox",
+    type: "list",
     choices: Object.values(MusicProviders),
-    validate: (options: Array<MusicProvider>) => {
-      if (!options.length) {
-        return Messages.no_option_selected
-      }
-
-      if (options.length > 1) {
-        return Messages.too_many_options
-      }
-
-      return true
-    },
+  },
+  {
+    name: "emoji",
+    message: "What emoji would you like to include in your slack status?",
+    type: "list",
+    choices: Object.values(Emojis),
   },
 ]
 

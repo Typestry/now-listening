@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest"
+import { Emojis } from "../../constants/emojis"
 import { getStatusMac } from "../getStatusMac"
 import { statusTask } from "./statusTask"
 
@@ -19,7 +20,7 @@ describe("statusTask", () => {
     await statusTask(provider)
 
     // Assert
-    expect(getStatusMac).toHaveBeenCalledWith(provider)
+    expect(getStatusMac).toHaveBeenCalledWith(provider, Emojis["Musical Notes"])
   })
 
   it("invokes a task method with provider 'Spotify' when ran on a supported platform", async () => {
@@ -34,7 +35,7 @@ describe("statusTask", () => {
     await statusTask(provider)
 
     // Assert
-    expect(getStatusMac).toHaveBeenCalledWith(provider)
+    expect(getStatusMac).toHaveBeenCalledWith(provider, Emojis["Musical Notes"])
   })
 
   it("prints an error when ran on linux", async () => {

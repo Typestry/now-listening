@@ -1,8 +1,8 @@
 import { readFileSync } from "fs"
 import { ENCODING, FILE_PATH } from "../constants/filesystem"
-import { Credentials } from "../types/Credentials"
+import { ConfigParams } from "../types/ConfigParams"
 
-export const getCredentials = () => {
+export const getConfig = () => {
   const response = readFileSync(FILE_PATH, ENCODING)
-  return JSON.parse(response) as Credentials
+  return JSON.parse(response) as ConfigParams
 }

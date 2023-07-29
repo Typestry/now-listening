@@ -1,8 +1,8 @@
 import { server } from "./src/api/mocks/server"
 import { vi } from "vitest"
 
-vi.mock("./src/utils/getCredentials", () => ({
-  getCredentials: () => {
+vi.mock("./src/utils/getConfig", () => ({
+  getConfig: () => {
     return { token: "test_token" }
   },
 }))

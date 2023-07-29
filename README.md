@@ -42,13 +42,16 @@ Currently **_Now Listening_** supports `Apple Music` and `Spotify` with plans to
 ```bash
 npm install
 ```
-### Run the app in dev mode: 
+
+### Run the app in dev mode:
 
 To run the app, run the following script:
+
 ```bash
-npm run dev 
+npm run dev
 ```
-This will start nodemon in watch mode and rebuild the app anytime you make changes. 
+
+This will start nodemon in watch mode and rebuild the app anytime you make changes.
 
 ### Build the App
 
@@ -70,18 +73,18 @@ Thank you for considering contributing to now-listening! We appreciate your inte
 
 **Clone Your Fork:** Once you've forked the repository, clone it to your local machine using the following command, replacing `[username]` with your GitHub username:
 
-   ```bash
-   git clone https://github.com/[username]/now-listening.git
-   cd now-listening
-   ```
+```bash
+git clone https://github.com/[username]/now-listening.git
+cd now-listening
+```
 
 **Create a new Branch:** Create a new branch with a descriptive name, starting from the development branch, using the following command:
 
-   ```bash
-   git checkout development
-   git pull origin development
-   git checkout -b feature/[your-feature-name]
-   ```
+```bash
+git checkout development
+git pull origin development
+git checkout -b feature/[your-feature-name]
+```
 
 **Make Changes:** Now, you can make your desired changes, add new features, or fix issues. Please write clean, concise, and well-documented code.
 
@@ -89,11 +92,11 @@ Thank you for considering contributing to now-listening! We appreciate your inte
 
 **Commit and Push:** Once you are satisfied with your changes, commit them to your local branch and push the changes to your fork on GitHub:
 
-   ```bash
-   git add .
-   git commit -m "Brief description of your changes"
-   git push origin feature/[your-feature-name]
-   ```
+```bash
+git add .
+git commit -m "Brief description of your changes"
+git push origin feature/[your-feature-name]
+```
 
 **Open a Pull Request:** Finally, navigate to the now-listening repository on GitHub and open a pull request (PR). Please ensure your PR targets the `development` branch, not `main`. Our team will review your changes and provide feedback as soon as possible.
 

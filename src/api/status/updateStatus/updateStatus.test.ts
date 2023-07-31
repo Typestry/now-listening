@@ -1,8 +1,9 @@
+import { vi, describe, afterEach, it, expect } from "vitest"
 import { ProfilePartial } from "../../../types/ProfilePartial"
-import { updateStatus } from "./updateStatus"
 import { cache } from "../../../cache"
 import { CacheKeys } from "../../../constants/cache"
-import { vi, describe, afterEach, it, expect } from "vitest"
+import { Emojis } from "../../../constants/emojis"
+import { updateStatus } from "./updateStatus"
 
 vi.spyOn(console, "log")
 vi.spyOn(console, "error")
@@ -14,18 +15,18 @@ describe("updateStatus", () => {
   it("invokes request if there is a valid payload", async () => {
     // Arrange
     const payload: ProfilePartial = {
-      status_emoji: "🎶",
+      status_emoji: Emojis["Musical Notes"],
       status_text: "hello by world",
     }
 
     // Act
-    const result = await updateStatus(payload)
+    await updateStatus(payload)
     const prevStatus = cache.get(CacheKeys.status())
 
     // Assert
     expect(prevStatus).toEqual(payload.status_text)
     expect(console.log).toHaveBeenCalledWith(
-      "Successfully updated status with: 🎶 hello by world",
+      `Successfully updated status with: ${payload.status_emoji} hello by world`,
     )
   })
 
@@ -43,7 +44,7 @@ describe("updateStatus", () => {
   it("does not invoke request if current status equals previous status", async () => {
     // Arrange
     const payload: ProfilePartial = {
-      status_emoji: "🎶",
+      status_emoji: Emojis["Musical Notes"],
       status_text: "hello by world",
     }
     cache.set(CacheKeys.status(), payload.status_text)
@@ -58,7 +59,7 @@ describe("updateStatus", () => {
   it("throws an error if payload is invalid", async () => {
     // Arrange
     const payload: ProfilePartial = {
-      status_emoji: "🎶",
+      status_emoji: Emojis["Musical Notes"],
       status_text: "",
     }
 

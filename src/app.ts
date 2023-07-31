@@ -1,22 +1,23 @@
-import { checkForUpdate } from "./utils/checkForUpdate/checkForUpdate"
+import packageJson from "package-json"
+import nodeCron from "node-cron"
+import boxen from "boxen"
+import figlet from "figlet"
+import chalk from "chalk"
+import localPackage from "../package.json"
 import { Messages } from "./constants/messages"
 import { MusicProvider } from "./types/MusicProvider"
 import { getAnswers } from "./utils/getAnswers/getAnswers"
-import { getCredentials } from "./utils/getCredentials"
+import { getConfig } from "./utils/getConfig"
 import { statusTask } from "./utils/statusTask/statusTask"
 import { writeCredentials } from "./utils/writeCredentials"
-import packageJson from "package-json"
-import localPackage from "../package.json"
-import nodeCron from "node-cron"
-import boxen from "boxen"
-import { getUpdateMessage } from "./utils/checkForUpdate"
-import figlet from "figlet"
-import chalk from "chalk"
+import { getUpdateMessage, checkForUpdate } from "./utils/checkForUpdate"
 import { Branding } from "./constants/branding"
+import { Emoji } from "./types/Emoji"
 
 export const app = async () => {
   let token = ""
   let provider: MusicProvider = "Music"
+  let emoji: Emoji = "🎶"
   const { name } = localPackage
 
   banner()
@@ -40,23 +41,26 @@ export const app = async () => {
       )
     }
 
-    const credentials = getCredentials()
+    const config = getConfig()
     console.log(Messages.read_success)
-    token = credentials.token
-    provider = credentials.provider
+    token = config.token
+    provider = config.provider
+    emoji = config.emoji
   } catch (err) {
     const answers = await getAnswers()
     token = answers.token
-    provider = answers.options[0]
+    provider = answers.provider
+    emoji = answers.emoji
     const content = JSON.stringify({
       token,
       provider,
+      emoji,
     })
 
     writeCredentials(content)
   }
 
-  nodeCron.schedule("* * * * *", async () => await statusTask(provider))
+  nodeCron.schedule("* * * * *", async () => await statusTask(provider, emoji))
 }
 
 const banner = () =>

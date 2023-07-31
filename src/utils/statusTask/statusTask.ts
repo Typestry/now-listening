@@ -1,11 +1,16 @@
 import { getStatusMac } from "../getStatusMac"
 import { updateStatus } from "../../api/status/updateStatus"
 import { MusicProvider } from "../../types/MusicProvider"
+import { Emoji } from "../../types/Emoji"
 
-export const statusTask = async (provider: MusicProvider) => {
+export const statusTask = async (
+  provider: MusicProvider,
+  emoji: Emoji = "🎶",
+) => {
+  let payload
   switch (process.platform) {
     case "darwin":
-      const payload = await getStatusMac(provider)
+      payload = await getStatusMac(provider, emoji)
       await updateStatus(payload)
       break
     case "linux":

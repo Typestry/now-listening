@@ -1,5 +1,7 @@
-import { checkForUpdate } from "./checkForUpdate"
 import { describe, it, expect, vi, afterEach } from "vitest"
+import { AbbreviatedMetadata } from "package-json"
+import { PackageJson } from "../../types/PackageJson"
+import { checkForUpdate } from "./checkForUpdate"
 
 describe("checkForUpdate", () => {
   afterEach(() => {
@@ -9,10 +11,10 @@ describe("checkForUpdate", () => {
     // Arrange
     const latest = {
       version: "3.0.0",
-    }
+    } as unknown as AbbreviatedMetadata
     const local = {
       version: "2.0.0",
-    }
+    } as unknown as PackageJson
 
     // Act
     const metaData = await checkForUpdate(latest, local)
@@ -29,10 +31,10 @@ describe("checkForUpdate", () => {
     // Arrange
     const latest = {
       version: "2.0.0",
-    }
+    } as unknown as AbbreviatedMetadata
     const local = {
       version: "2.0.0",
-    }
+    } as unknown as PackageJson
 
     // Act
     const metaData = await checkForUpdate(latest, local)

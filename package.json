@@ -29,6 +29,8 @@
     "test:lint:fix": "npm run test:lint -- --fix",
     "test:types": "tsc --pretty --noEmit",
     "test:ci": "cross-env CI=true run-s test:prettier test:lint test:types test:unit:ci",
+    "pretest:unit": "npm run build",
+    "pretest:unit:coverage": "npm run build",
     "prepublishOnly": "run-s test:unit:ci build"
   },
   "main": "dist/app.js",
